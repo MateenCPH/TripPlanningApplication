@@ -17,7 +17,7 @@ public class TripRoutes {
 
             get("/{id}", tripController::readById, Role.ANYONE);
 
-            post("/", tripController::create, Role.ANYONE);
+            post("/", tripController::create, Role.ADMIN);
             post("/populate", tripController::populate, Role.ANYONE);
 
             put("/{id}", tripController::update, Role.ANYONE);
