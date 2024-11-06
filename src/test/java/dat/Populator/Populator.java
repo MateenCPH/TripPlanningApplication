@@ -8,9 +8,14 @@ import dat.entities.Guide;
 import dat.entities.Trip;
 import dat.entities.Trip.TripCategory;
 import dat.exceptions.ApiException;
+import dat.security.daos.SecurityDAO;
+import dk.bugelhartmann.UserDTO;
+import dat.security.entities.Role;
+import dat.security.entities.User;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
+import java.util.Set;
 
 public class Populator {
     private static EntityManagerFactory emf;
@@ -125,5 +130,34 @@ public class Populator {
         } catch (ApiException | InvalidFormatException | JsonParseException e) {
             e.printStackTrace();
         }
+    }
+
+    public static UserDTO[] populateUsers() {
+
+        User user, admin;
+        Role userRole, adminRole;
+
+        user = new User("usertest", "user123");
+        admin = new User("admintest", "admin123");
+        userRole = new Role("USER");
+        adminRole = new Role("ADMIN");
+        user.addRole(userRole);
+        admin.addRole(adminRole);
+
+        if (emf == null) {
+            throw new IllegalStateException("EntityManagerFactory is not initialized");
+        }
+
+        try (var em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.persist(userRole);
+            em.persist(adminRole);
+            em.persist(user);
+            em.persist(admin);
+            em.getTransaction().commit();
+        }
+        UserDTO userDTO = new UserDTO(user.getUsername(), "user123");
+        UserDTO adminDTO = new UserDTO(admin.getUsername(), "admin123");
+        return new UserDTO[]{userDTO, adminDTO};
     }
 }

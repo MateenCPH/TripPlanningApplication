@@ -39,7 +39,7 @@ public class SecurityController implements ISecurityController {
     private static SecurityController instance;
     private static Logger logger = LoggerFactory.getLogger(SecurityController.class);
 
-    private SecurityController() { }
+    public SecurityController() { }
 
     public static SecurityController getInstance() { // Singleton because we don't want multiple instances of the same class
         if (instance == null) {

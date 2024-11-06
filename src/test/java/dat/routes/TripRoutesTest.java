@@ -26,13 +26,13 @@ class TripRoutesTest {
     private static final EntityManagerFactory emf = HibernateConfig.getEntityManagerFactoryForTest();
     private static final TripDAO dao = TripDAO.getInstance(emf);
     private static final Populator populator = new Populator(emf, dao);
-    private static final String BASE_URL = "http://localhost:7007/api/trips";
+    private static final String BASE_URL = "http://localhost:9009/api/trips";
 
     private static TripDTO t1DTO, t2DTO, t3DTO, t4DTO, t5DTO, t6DTO;
 
     @BeforeAll
     static void beforeAll() {
-        app = ApplicationConfig.startServer(7007);
+        app = ApplicationConfig.startServer(9009);
     }
 
     @BeforeEach

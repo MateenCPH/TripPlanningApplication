@@ -2,7 +2,7 @@
 name: CI/CD WORKFLOW
 on:
   push:
-    branches: [ garden ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -36,4 +36,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/garden_api:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tripPlanning_api:latest
