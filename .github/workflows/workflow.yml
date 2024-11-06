@@ -36,4 +36,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tripPlanning_api:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tripplanning_api:latest
