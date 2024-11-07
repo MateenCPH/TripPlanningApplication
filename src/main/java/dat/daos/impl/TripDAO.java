@@ -136,11 +136,9 @@ public class TripDAO implements IDAO<TripDTO, Integer>, ITripGuideDAO<Integer, I
             Guide guide = em.find(Guide.class, guideId);
 
             if (trip == null) {
-                em.getTransaction().rollback();
                 throw new EntityNotFoundException("Trip with id: " + tripId + " not found");
             }
             if (guide == null) {
-                em.getTransaction().rollback();
                 throw new EntityNotFoundException("Guide with id: " + guideId + " not found");
             }
 
